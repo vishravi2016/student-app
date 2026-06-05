@@ -2,4 +2,8 @@ Student Management Application
 
 Version 2
 
-Added student registration feature
+Added student registration features.
+
+
+Email validation added from the feature branch.
+
