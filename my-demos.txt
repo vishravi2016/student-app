@@ -114,3 +114,193 @@ Untracked files:
 
 
 
+Day 2: Demo 1- Branching strategy:
+
+C:\raviwork\git-demo\student-app>git branch
+* master
+
+C:\raviwork\git-demo\student-app>git branch feature-login
+
+C:\raviwork\git-demo\student-app>git checkout feature-login
+A       marks.txt
+Switched to branch 'feature-login'
+
+C:\raviwork\git-demo\student-app>git add .
+
+C:\raviwork\git-demo\student-app>git commit -m "added login features"
+[feature-login 2392e98] added login features
+ 3 files changed, 124 insertions(+)
+ create mode 100644 login.txt
+ create mode 100644 marks.txt
+ create mode 100644 my-demos.txt
+
+C:\raviwork\git-demo\student-app>git switch main
+fatal: invalid reference: main
+
+C:\raviwork\git-demo\student-app>git switch master
+Switched to branch 'master'
+
+C:\raviwork\git-demo\student-app>git merge feature-login
+Updating da60097..2392e98
+Fast-forward
+ login.txt    |   3 ++
+ marks.txt    |   5 +++
+ my-demos.txt | 116 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 124 insertions(+)
+ create mode 100644 login.txt
+ create mode 100644 marks.txt
+ create mode 100644 my-demos.txt
+
+C:\raviwork\git-demo\student-app>git switch -c feature-payment
+Switched to a new branch 'feature-payment'
+
+C:\raviwork\git-demo\student-app>git add .
+
+C:\raviwork\git-demo\student-app>git commit -m "added UPI payment feature"
+[feature-payment 6f3cef6] added UPI payment feature
+ 1 file changed, 3 insertions(+)
+ create mode 100644 payment.txt
+
+C:\raviwork\git-demo\student-app>git switch master
+Switched to branch 'master'
+
+C:\raviwork\git-demo\student-app>git merge feature-payment
+Updating 2392e98..6f3cef6
+Fast-forward
+ payment.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 payment.txt
+
+
+Day 2 : Demo 2:Merge conflict
+==============================
+C:\raviwork\git-demo\student-app>git switch -c feature-email
+Switched to a new branch 'feature-email'
+
+Modify student.txt:
+
+
+C:\raviwork\git-demo\student-app>git add .
+
+C:\raviwork\git-demo\student-app>git commit -m "updated student app from feature email branch"
+[feature-email e27d618] updated student app from feature email branch
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+C:\raviwork\git-demo\student-app>git switch master
+Switched to branch 'master'
+
+Modify the same line in students.txt
+
+C:\raviwork\git-demo\student-app>git add .
+
+C:\raviwork\git-demo\student-app>git commit -m "updated student app from master branch"
+[master bf1811e] updated student app from master branch
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+C:\raviwork\git-demo\student-app>git merge feature-email
+Auto-merging students.txt
+CONFLICT (content): Merge conflict in students.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+
+Day 3:Demo1: Merge vs Rebase
+=============================
+C:\raviwork\git-demo\student-app>git switch master
+Already on 'master'
+
+C:\raviwork\git-demo\student-app>git switch -c feature-report
+Switched to a new branch 'feature-report'
+
+C:\raviwork\git-demo\student-app>git add .
+
+C:\raviwork\git-demo\student-app>git commit -m "added report module"
+[feature-report 473ff40] added report module
+ 1 file changed, 1 insertion(+)
+ create mode 100644 report.txt
+
+C:\raviwork\git-demo\student-app>git switch master
+Switched to branch 'master'
+
+C:\raviwork\git-demo\student-app>git add .
+
+C:\raviwork\git-demo\student-app>git commit -m "added dashboard module"
+[master 03b210b] added dashboard module
+ 1 file changed, 1 insertion(+)
+ create mode 100644 dashboard.txt
+
+C:\raviwork\git-demo\student-app>git switch feature-report
+Switched to branch 'feature-report'
+
+C:\raviwork\git-demo\student-app>git rebase master
+Successfully rebased and updated refs/heads/feature-report.
+
+C:\raviwork\git-demo\student-app>git log --oneline --graph --all
+* af93fb7 (HEAD -> feature-report) added report module
+* 03b210b (master) added dashboard module
+*   b3f2887 resolved merge conflict between email and mobile validation
+|\
+| * e27d618 (feature-email) updated student app from feature email branch
+* | bf1811e updated student app from master branch
+|/
+* 6f3cef6 (feature-payment) added UPI payment feature
+* 2392e98 (feature-login) added login features
+* da60097 added student registration feature
+* 83aedce initial commit-added students app
+
+C:\raviwork\git-demo\student-app>git switch master
+Switched to branch 'master'
+
+
+C:\raviwork\git-demo\student-app>git merge feature-report
+Updating 03b210b..af93fb7
+Fast-forward
+ report.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 report.txt
+
+Day 3: Demo 2: Create a empty github repo - student-app
+========================================================
+C:\raviwork\git-demo\student-app>git remote add origin https://github.com/vishravi2016/student-app.git
+
+C:\raviwork\git-demo\student-app>git branch -M main
+
+C:\raviwork\git-demo\student-app>git push -u origin main
+Enumerating objects: 29, done.
+Counting objects: 100% (29/29), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (22/22), done.
+Writing objects: 100% (29/29), 3.38 KiB | 433.00 KiB/s, done.
+Total 29 (delta 10), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (10/10), done.
+To https://github.com/vishravi2016/student-app.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+C:\raviwork\git-demo\student-app>git remote -v
+origin  https://github.com/vishravi2016/student-app.git (fetch)
+origin  https://github.com/vishravi2016/student-app.git (push)
+
+
+Cloning the repo:
+=================
+
+C:\raviwork\git-demo\student-app>cd..
+
+C:\raviwork\git-demo>mkdir clone-repo-projects
+
+C:\raviwork\git-demo>cd clone-repo-projects
+
+C:\raviwork\git-demo\clone-repo-projects>git clone https://github.com/vishravi2016/student-app.git
+Cloning into 'student-app'...
+remote: Enumerating objects: 29, done.
+remote: Counting objects: 100% (29/29), done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 29 (delta 10), reused 29 (delta 10), pack-reused 0 (from 0)
+Receiving objects: 100% (29/29), done.
+Resolving deltas: 100% (10/10), done.
+
+
+
+
+
+
