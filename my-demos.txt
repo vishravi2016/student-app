@@ -1,0 +1,116 @@
+Deno 1: Local Git basics:
+==========================
+C:\raviwork\git-demo\student-app>git init
+Initialized empty Git repository in C:/raviwork/git-demo/student-app/.git/
+
+C:\raviwork\git-demo\student-app>git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        students.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\raviwork\git-demo\student-app>git add students.txt
+
+C:\raviwork\git-demo\student-app>git commit -m "initial commit-added students app"
+[master (root-commit) 83aedce] initial commit-added students app
+ 1 file changed, 3 insertions(+)
+ create mode 100644 students.txt
+
+C:\raviwork\git-demo\student-app>git log
+commit 83aedce5432b3f2cdac4f27b95a55a8bffc64254 (HEAD -> master)
+Author: vishravi2016 <ravikumar.k1@tataelxsi.co.in>
+Date:   Fri Jun 5 12:22:30 2026 +0530
+
+    initial commit-added students app
+
+C:\raviwork\git-demo\student-app>git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   students.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+C:\raviwork\git-demo\student-app>git diff
+diff --git a/students.txt b/students.txt
+index 31ab1e3..f24dd68 100644
+--- a/students.txt
++++ b/students.txt
+@@ -1,3 +1,5 @@
+ Student Management Application
+
+-Version 1
+\ No newline at end of file
++Version 2
++
++Added student registration feature
+\ No newline at end of file
+
+C:\raviwork\git-demo\student-app>git add .
+
+C:\raviwork\git-demo\student-app>git commit -m "added student registration feature"
+[master da60097] added student registration feature
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+C:\raviwork\git-demo\student-app>git log --oneline
+da60097 (HEAD -> master) added student registration feature
+83aedce initial commit-added students app
+
+Day 1 - Demo2: Git restore,reset and history
+=============================================
+C:\raviwork\git-demo\student-app>git add marks.txt                                                                           C:\raviwork\git-demo\student-app>git commit -m "added marks module"                                      C:\raviwork\git-demo\student-app>git status                                                                                                        On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   marks.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        my-demos.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")                                                    C:\raviwork\git-demo\student-app>git restore marks.txt
+
+C:\raviwork\git-demo\student-app>git add marks.txt
+
+C:\raviwork\git-demo\student-app>git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   marks.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        my-demos.txt  What these git commands ard doing
+
+C:\raviwork\git-demo\student-app>git restore --staged marks.txt
+
+C:\raviwork\git-demo\student-app>git log --oneline
+56ef717 (HEAD -> master) added marks module
+da60097 added student registration feature
+83aedce initial commit-added students app
+
+C:\raviwork\git-demo\student-app>git reset --soft HEAD~1
+
+C:\raviwork\git-demo\student-app>git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   marks.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   marks.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        my-demos.txt. What these commands do?
+
+
+
