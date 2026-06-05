@@ -1,3 +1,5 @@
 Student Management Application
 
-Version 1
+Version 2
+
+Added student registration feature
